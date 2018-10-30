@@ -13,6 +13,8 @@ const GameStateReducer = (state = defaultState, action) => {
             return { ...state, right: action.right}
         case GameConst.UPDATE_WRONG:
             return { ...state, wrong: action.wrong}
+        case GameConst.UPDATE_INPUT:
+            return { ...state, input: action.input}
         default:
             return state
     }

@@ -10,8 +10,14 @@ const GameActions = (dispatch) => {
         },
         updateWrong: (wrong) => {
             dispatch({
-                type:GameConst.updateWrong,
+                type: GameConst.updateWrong,
                 wrong: wrong
+            })
+        },
+        updateInput: (input) => {
+            dispatch({
+                type: GameConst.updateInput,
+                input: input
             })
         }
     }
