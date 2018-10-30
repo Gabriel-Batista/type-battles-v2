@@ -2,7 +2,7 @@ import GameConst from '../Constants/GameConst'
 
 const defaultState = {
     input: "",
-    paragraph: "",
+    paragraph: "The quick fox jumps over the lazy dog",
     right: "",
     wrong: ""
 }
