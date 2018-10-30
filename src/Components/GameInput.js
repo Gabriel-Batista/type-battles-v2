@@ -13,9 +13,9 @@ const GameInput = (props) =>    {
             value.charAt(i) === props.paragraph.charAt(i) ? right += value.charAt(i) : wrong += value.charAt(i)
         }
         
-        GameActions.updateRight(right)
-        GameActions.updateWrong(wrong)
-        GameActions.updateInput(value)
+        props.updateRight(right)
+        props.updateWrong(wrong)
+        props.updateInput(value)
     }
 
     return  (

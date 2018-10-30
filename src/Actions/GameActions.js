@@ -4,19 +4,19 @@ const GameActions = (dispatch) => {
     return {
         updateRight: (right) => {
             dispatch({
-                type: GameConst.updateRight,
+                type: GameConst.UPDATE_RIGHT,
                 right: right
             })
         },
         updateWrong: (wrong) => {
             dispatch({
-                type: GameConst.updateWrong,
+                type: GameConst.UPDATE_WRONG,
                 wrong: wrong
             })
         },
         updateInput: (input) => {
             dispatch({
-                type: GameConst.updateInput,
+                type: GameConst.UPDATE_INPUT,
                 input: input
             })
         }
