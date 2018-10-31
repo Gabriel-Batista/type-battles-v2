@@ -27,13 +27,11 @@ class Nav extends Component {
     render() {
         return (
             <Menu>
-                <Menu.Item position="right" name="Login" active={true}>
                     {this.props.loggedIn ? (
                         <Logout clearUser={this.props.clear} />
                     ) : (
                         <LoginModal handleLogin={this.handleLogin} />
                     )}
-                </Menu.Item>
             </Menu>
         );
     }

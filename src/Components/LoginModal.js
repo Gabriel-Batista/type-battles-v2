@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Header, Icon, Modal, Input, Form } from "semantic-ui-react";
+import { Button, Header, Icon, Modal, Input, Form, Menu } from "semantic-ui-react";
 
 class LoginModal extends Component {
     state = {
@@ -16,7 +16,7 @@ class LoginModal extends Component {
     render() {
         return (
             <Modal
-                trigger={<Button onClick={this.handleOpen}>Login</Button>}
+                trigger={<Menu.Item position="right" onClick={this.handleOpen}>Login</Menu.Item>}
                 open={this.state.modalOpen}
                 onClose={this.handleClose}
                 size="small"
