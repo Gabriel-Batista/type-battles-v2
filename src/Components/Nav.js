@@ -4,23 +4,35 @@ import { Menu } from "semantic-ui-react";
 
 import { LoginAdapters } from "../Adapters/LoginAdapters";
 import LoginModal from "./LoginModal";
+import Logout from "./Logout";
+
+import UserActions from "../Actions/UserActions";
 
 class Nav extends Component {
+    componentDidMount = () => {
+      if(this.props.loggedIn === false && localStorage.getItem("token"))  {
+        this.props.toggleLoggedIn()
+      }
+    };
+
     handleLogin = (email, password) => {
-        LoginAdapters.login(email, password).then(res =>
-            localStorage.setItem("token", res.token)
-        )
-    }
+        LoginAdapters.login(email, password).then(res => {
+            localStorage.setItem("token", res.token);
+            this.props.updateEmail(email);
+            this.props.updateName(res.name);
+            this.props.toggleLoggedIn();
+        });
+    };
 
     render() {
         return (
             <Menu>
-                <Menu.Item
-                    position="right"
-                    name="Login"
-                    active={true}
-                >
-                    <LoginModal handleLogin={this.handleLogin}/>
+                <Menu.Item position="right" name="Login" active={true}>
+                    {this.props.loggedIn ? (
+                        <Logout clearUser={this.props.clear} />
+                    ) : (
+                        <LoginModal handleLogin={this.handleLogin} />
+                    )}
                 </Menu.Item>
             </Menu>
         );
@@ -28,14 +40,12 @@ class Nav extends Component {
 }
 
 const mapStateToProps = state => {
-    return {};
-};
-
-const mapDispatchToProps = dispatch => {
-    return {};
+    return {
+        loggedIn: state.user.loggedIn
+    };
 };
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    UserActions
 )(Nav);

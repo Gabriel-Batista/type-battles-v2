@@ -8,9 +8,11 @@ import { Provider } from 'react-redux'
 import { createStore, combineReducers } from 'redux'
 
 import GameReducer from './Reducers/GameReducer'
+import UserReducer from './Reducers/UserReducer'
 
 const rootReducer = combineReducers({
-    game: GameReducer
+    game: GameReducer,
+    user: UserReducer
 });
 const store = createStore(
     rootReducer,
