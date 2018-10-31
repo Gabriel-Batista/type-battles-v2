@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import { Button, Header, Icon, Modal, Input, Form } from "semantic-ui-react";
 
 class LoginModal extends Component {
-    state = { modalOpen: false };
+    state = {
+        modalOpen: false,
+        email: "",
+        username: "",
+        password: ""
+    };
 
     handleOpen = () => this.setState({ modalOpen: true });
 
@@ -19,21 +24,50 @@ class LoginModal extends Component {
                 <Header icon="lock" content="Login" />
                 <Modal.Content>
                     <Form>
-                      <Form.Field>
-                        <label for="email">Email</label>
-                        <Input id="email" placeholder="Email..."></Input>
-                      </Form.Field>
-                      <Form.Field>
-                        <label for="password">Password</label>
-                        <Input id="password" placeholder="Password..."></Input>
-                      </Form.Field>
+                        <Form.Field>
+                            <label for="email">Email</label>
+                            <Input
+                                autoFocus
+                                id="email"
+                                placeholder="Email..."
+                                value={this.state.email}
+                                onChange={e =>
+                                    this.setState({ email: e.target.value })
+                                }
+                            />
+                        </Form.Field>
+                        <Form.Field>
+                            <label for="password">Password</label>
+                            <Input
+                                type="password"
+                                id="password"
+                                placeholder="Password..."
+                                value={this.state.password}
+                                onChange={e =>
+                                    this.setState({ password: e.target.value })
+                                }
+                            />
+                        </Form.Field>
                     </Form>
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button color="red" size="medium" onClick={this.handleClose} inverted>
-                      <Icon name="x" /> Cancel
+                    <Button
+                        color="red"
+                        size="medium"
+                        onClick={this.handleClose}
+                        inverted
+                    >
+                        <Icon name="x" /> Cancel
                     </Button>
-                    <Button color="green" size="medium" onClick={this.handleClose} inverted>
+                    <Button
+                        color="green"
+                        size="medium"
+                        onClick={() => {
+                          this.props.handleLogin(this.state.email, this.state.password);
+                          this.handleClose()
+                        }}
+                        inverted
+                    >
                         <Icon name="checkmark" /> Login
                     </Button>
                 </Modal.Actions>
@@ -42,4 +76,4 @@ class LoginModal extends Component {
     }
 }
 
-export default LoginModal
+export default LoginModal;
