@@ -7,7 +7,7 @@ const defaultState = {
     wrong: ""
 }
 
-const GameStateReducer = (state = defaultState, action) => {
+const GameReducer = (state = defaultState, action) => {
     switch(action.type) {
         case GameConst.UPDATE_RIGHT:
             return { ...state, right: action.right}
@@ -20,4 +20,4 @@ const GameStateReducer = (state = defaultState, action) => {
     }
 }
 
-export default GameStateReducer
+export default GameReducer
