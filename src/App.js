@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 
 import GameInput from './Components/GameInput'
 import Paragraph from './Components/Paragraph'
+import Nav from './Components/Nav'
 
 class App extends Component {
     render() {
         return (
             <div>
-                {/* <Nav></Nav>
-                    <Track></Track>*/}
-                <Paragraph />
-                <GameInput />
+                {/*<Track></Track>*/}
+              <Nav></Nav>
+              <Paragraph />
+              <GameInput />
             </div>
         )
     }

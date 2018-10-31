@@ -7,7 +7,6 @@ const GameInput = (props) =>    {
     const handleInput = (value) =>  {
         let right = ""
         let wrong = ""
-        console.log(value)
 
         for (var i = 0; i < value.length; i++) {
             value.charAt(i) === props.paragraph.charAt(i) && wrong.length === 0 ? right += value.charAt(i) : wrong += value.charAt(i)
