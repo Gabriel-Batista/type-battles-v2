@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Menu } from 'semantic-ui-react'
 
 import { LoginAdapters } from '../Adapters/LoginAdapters'
+import LoginModal from './LoginModal'
 
 class Nav extends Component {
   handleLogin = () => {
@@ -14,7 +15,7 @@ class Nav extends Component {
     return (
       <Menu>
         <Menu.Item position="right" name="Login" active={true} onClick={this.handleLogin}>
-            Login
+            <LoginModal></LoginModal>
         </Menu.Item>
       </Menu>
     )
