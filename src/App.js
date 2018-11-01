@@ -13,8 +13,6 @@ class App extends Component {
       console.log(res)
     }
 
-
-
     render() {
         return (
             <div>
