@@ -10,9 +10,9 @@ import UserActions from "../Actions/UserActions";
 
 class Nav extends Component {
     componentDidMount = () => {
-      if(this.props.loggedIn === false && localStorage.getItem("token"))  {
-        this.props.toggleLoggedIn()
-      }
+        if (this.props.loggedIn === false && localStorage.getItem("token")) {
+            this.props.toggleLoggedIn();
+        }
     };
 
     handleLogin = (email, password) => {
@@ -27,11 +27,12 @@ class Nav extends Component {
     render() {
         return (
             <Menu>
-                    {this.props.loggedIn ? (
-                        <Logout clearUser={this.props.clear} />
-                    ) : (
-                        <LoginModal handleLogin={this.handleLogin} />
-                    )}
+                <Menu.Item header>TYPE BATTLES</Menu.Item>
+                {this.props.loggedIn ? (
+                    <Logout clearUser={this.props.clear} />
+                ) : (
+                    <LoginModal handleLogin={this.handleLogin} />
+                )}
             </Menu>
         );
     }

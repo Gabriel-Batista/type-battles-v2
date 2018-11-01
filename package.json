@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "react": "^16.6.0",
+    "react-actioncable-provider": "^1.0.3",
     "react-dom": "^16.6.0",
     "react-redux": "^5.1.0",
     "react-scripts": "2.0.5",

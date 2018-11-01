@@ -25,7 +25,7 @@ class LoginModal extends Component {
                 <Modal.Content>
                     <Form>
                         <Form.Field>
-                            <label for="email">Email</label>
+                            <label>Email</label>
                             <Input
                                 autoFocus
                                 id="email"
@@ -37,7 +37,7 @@ class LoginModal extends Component {
                             />
                         </Form.Field>
                         <Form.Field>
-                            <label for="password">Password</label>
+                            <label>Password</label>
                             <Input
                                 type="password"
                                 id="password"

@@ -4,9 +4,7 @@ export const LoginAdapters = {
   login: (email, password) =>  {
     return fetch(FetchConst.API + '/login', {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: FetchConst.HEADERS,
       body: JSON.stringify({
         email: email,
         password: password

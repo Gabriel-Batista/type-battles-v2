@@ -1,26 +1,31 @@
-import GameConst from '../Constants/GameConst'
+import GameConst from "../Constants/GameConst";
 
-const GameActions = (dispatch) => {
+const GameActions = dispatch => {
     return {
-        updateRight: (right) => {
+        updateRight: right => {
             dispatch({
                 type: GameConst.UPDATE_RIGHT,
                 right: right
-            })
+            });
         },
-        updateWrong: (wrong) => {
+        updateWrong: wrong => {
             dispatch({
                 type: GameConst.UPDATE_WRONG,
                 wrong: wrong
-            })
+            });
         },
-        updateInput: (input) => {
+        updateInput: input => {
             dispatch({
                 type: GameConst.UPDATE_INPUT,
                 input: input
-            })
+            });
+        },
+        gameOver: () => {
+            dispatch({
+                type: GameConst.GAME_OVER
+            });
         }
-    }
-}
+    };
+};
 
-export default GameActions
+export default GameActions;
