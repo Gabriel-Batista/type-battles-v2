@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Menu } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 
-import { LoginAdapters } from "../Adapters/LoginAdapters";
 import LoginModal from "./LoginModal";
 import Logout from "./Logout";
 

@@ -5,7 +5,6 @@ import {
     Header,
     Icon,
     Modal,
-    Input,
     Form,
     Menu
 } from "semantic-ui-react";
