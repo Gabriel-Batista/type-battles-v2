@@ -12,10 +12,6 @@ import HomePage from "./Components/HomePage";
 import PrivateRoute from "./Components/PrivateRoute";
 
 class App extends Component {
-    handleReceived = res => {
-        console.log(res);
-    };
-
     render() {
         return (
             <Router>
