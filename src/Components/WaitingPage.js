@@ -6,11 +6,14 @@ import GameActions from "../Actions/GameActions";
 
 import { Redirect } from "react-router-dom";
 
+import PlayArea from "./PlayArea";
+
 class WaitingPage extends Component {
     state = {
         redirect: false,
         seatsTaken: 0,
-        createWebSocket: false
+        createWebSocket: false,
+        matchReady: false
     };
 
     componentDidMount = () => {
@@ -20,20 +23,26 @@ class WaitingPage extends Component {
             } else {
                 console.log("fetch:", res);
                 this.props.updateMatchId(res.id);
-                this.setState(
-                    {
-                        seatsTaken: res.seats_taken
-                    },
-                    () => this.setState({ createWebSocket: true })
-                );
+                this.setState({
+                    seatsTaken: res.seats_taken,
+                    createWebSocket: true
+                });
             }
         });
     };
 
+    componentDidUpdate = () =>  {
+      if (this.state.matchReady !== true && this.state.seatsTaken === 4)  {
+        this.setState({
+          matchReady: true
+        })
+      }
+    }
+
     handleReceived = res => {
         console.log("ActionCable:", res);
         this.setState({
-            seatsTaken: res.match.seats_taken
+            seatsTaken: res.match.seats_taken,
         });
     };
 
@@ -48,7 +57,13 @@ class WaitingPage extends Component {
                     onReceived={this.handleReceived}
                 />
             ) : null}
-            <p>{"waiting for " + (4 - this.state.seatsTaken) + " player/s"}</p>
+            {this.state.matchReady ? (
+                <PlayArea />
+            ) : (
+                <p>
+                    {"waiting for " + (4 - this.state.seatsTaken) + " player/s"}
+                </p>
+            )}
         </React.Fragment>
     );
 
