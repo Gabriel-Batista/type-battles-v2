@@ -20,6 +20,12 @@ const GameActions = dispatch => {
                 input: input
             });
         },
+        updateMatchId: matchId => {
+            dispatch({
+                type: GameConst.UPDATE_MATCH_ID,
+                matchId: matchId
+            });
+        },
         gameOver: () => {
             dispatch({
                 type: GameConst.GAME_OVER

@@ -1,6 +1,7 @@
 import GameConst from '../Constants/GameConst'
 
 const defaultState = {
+    matchId: null,
     input: "",
     paragraph: "The quick fox jumps over the lazy dog",
     right: "",
@@ -16,6 +17,8 @@ const GameReducer = (state = defaultState, action) => {
             return { ...state, wrong: action.wrong}
         case GameConst.UPDATE_INPUT:
             return { ...state, input: action.input}
+        case GameConst.UPDATE_MATCH_ID:
+            return { ...state, matchId: action.matchId}
         case GameConst.GAME_OVER:
             return{ ...state, gameOver: true}
         default:
