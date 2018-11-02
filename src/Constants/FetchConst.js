@@ -3,7 +3,6 @@ export const FetchConst = {
   API_WS: "ws://localhost:3001/cable",
   HEADERS: {
       'Content-Type': 'application/json',
-      Accept: 'application/json',
-      Authorization: `Token token=${localStorage.getItem("token")}`
+      Accept: 'application/json'
   }
 }

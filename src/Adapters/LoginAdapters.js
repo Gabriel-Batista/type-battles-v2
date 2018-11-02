@@ -4,7 +4,10 @@ export const LoginAdapters = {
   login: (email, password) =>  {
     return fetch(FetchConst.API + '/login', {
       method: "POST",
-      headers: FetchConst.HEADERS,
+      headers: {
+        ...FetchConst.HEADERS,
+        Authorization: `Token token=${localStorage.getItem("token")}`
+      },
       body: JSON.stringify({
         email: email,
         password: password
