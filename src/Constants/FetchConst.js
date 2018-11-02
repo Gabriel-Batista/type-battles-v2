@@ -4,5 +4,6 @@ export const FetchConst = {
   HEADERS: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
+      Authorization: `Token token=${localStorage.getItem("token")}`
   }
 }

@@ -6,7 +6,7 @@ import Nav from "./Components/Nav";
 
 import { ActionCable } from "react-actioncable-provider";
 import { BrowserRouter as Router, Route, Switch, NavLink } from "react-router-dom";
-import PlayArea from "./Components/PlayArea";
+import WaitingPage from "./Components/WaitingPage";
 import HomePage from "./Components/HomePage";
 import PrivateRoute from "./Components/PrivateRoute";
 
@@ -24,7 +24,7 @@ class App extends Component {
                     <Route component={Nav} />
                     <Switch>
                         <Route path="/" exact component={HomePage} />
-                        <PrivateRoute path="/play" component={PlayArea} />
+                        <PrivateRoute path="/play" component={WaitingPage} />
                     </Switch>
                 </div>
             </Router>
