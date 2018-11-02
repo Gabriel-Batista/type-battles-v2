@@ -1,22 +1,54 @@
 import React, { Component } from "react";
-import { Button, Header, Icon, Modal, Input, Form, Menu } from "semantic-ui-react";
+import { connect } from "react-redux";
+import {
+    Button,
+    Header,
+    Icon,
+    Modal,
+    Input,
+    Form,
+    Menu
+} from "semantic-ui-react";
+import { LoginAdapters } from "../Adapters/LoginAdapters";
+import UserActions from "../Actions/UserActions";
 
 class LoginModal extends Component {
     state = {
         modalOpen: false,
         email: "",
         username: "",
-        password: ""
+        password: "",
+        error: false
     };
 
     handleOpen = () => this.setState({ modalOpen: true });
 
     handleClose = () => this.setState({ modalOpen: false });
 
+    handleLogin = (email, password) => {
+        LoginAdapters.login(email, password).then(res => {
+            if (res.token !== undefined) {
+                localStorage.setItem("token", res.token);
+                this.props.updateEmail(email);
+                this.props.updateName(res.name);
+                this.props.toggleLoggedIn();
+                this.handleClose();
+            } else {
+                this.setState({
+                    error: true
+                });
+            }
+        });
+    };
+
     render() {
         return (
             <Modal
-                trigger={<Menu.Item position="right" onClick={this.handleOpen}>Login</Menu.Item>}
+                trigger={
+                    <Menu.Item position="right" onClick={this.handleOpen}>
+                        Login
+                    </Menu.Item>
+                }
                 open={this.state.modalOpen}
                 onClose={this.handleClose}
                 size="small"
@@ -26,7 +58,8 @@ class LoginModal extends Component {
                     <Form>
                         <Form.Field>
                             <label>Email</label>
-                            <Input
+                            <Form.Input
+                                error={this.state.error}
                                 autoFocus
                                 id="email"
                                 placeholder="Email..."
@@ -38,7 +71,8 @@ class LoginModal extends Component {
                         </Form.Field>
                         <Form.Field>
                             <label>Password</label>
-                            <Input
+                            <Form.Input
+                                error={this.state.error}
                                 type="password"
                                 id="password"
                                 placeholder="Password..."
@@ -63,8 +97,10 @@ class LoginModal extends Component {
                         color="green"
                         size="medium"
                         onClick={() => {
-                          this.props.handleLogin(this.state.email, this.state.password);
-                          this.handleClose()
+                            this.handleLogin(
+                                this.state.email,
+                                this.state.password
+                            );
                         }}
                         inverted
                     >
@@ -76,4 +112,7 @@ class LoginModal extends Component {
     }
 }
 
-export default LoginModal;
+export default connect(
+    null,
+    UserActions
+)(LoginModal);

@@ -16,15 +16,6 @@ class Nav extends Component {
         }
     };
 
-    handleLogin = (email, password) => {
-        LoginAdapters.login(email, password).then(res => {
-            localStorage.setItem("token", res.token);
-            this.props.updateEmail(email);
-            this.props.updateName(res.name);
-            this.props.toggleLoggedIn();
-        });
-    };
-
     render() {
         return (
             <Menu>
@@ -34,7 +25,7 @@ class Nav extends Component {
                 {this.props.loggedIn ? (
                     <Logout clearUser={this.props.clear} />
                 ) : (
-                    <LoginModal handleLogin={this.handleLogin} />
+                    <LoginModal />
                 )}
             </Menu>
         );
