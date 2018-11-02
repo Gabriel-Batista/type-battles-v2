@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Menu } from "semantic-ui-react";
+import { NavLink } from "react-router-dom";
 
 import { LoginAdapters } from "../Adapters/LoginAdapters";
 import LoginModal from "./LoginModal";
@@ -27,7 +28,9 @@ class Nav extends Component {
     render() {
         return (
             <Menu>
-                <Menu.Item header>TYPE BATTLES</Menu.Item>
+                <Menu.Item header>
+                    <NavLink to="/">TYPE BATTLES</NavLink>
+                </Menu.Item>
                 {this.props.loggedIn ? (
                     <Logout clearUser={this.props.clear} />
                 ) : (

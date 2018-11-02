@@ -5,9 +5,10 @@ import Paragraph from "./Components/Paragraph";
 import Nav from "./Components/Nav";
 
 import { ActionCable } from "react-actioncable-provider";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, NavLink } from "react-router-dom";
 import PlayArea from "./Components/PlayArea";
 import HomePage from "./Components/HomePage";
+import PrivateRoute from "./Components/PrivateRoute";
 
 import { Button } from "semantic-ui-react";
 
@@ -23,7 +24,7 @@ class App extends Component {
                     <Route component={Nav} />
                     <Switch>
                         <Route path="/" exact component={HomePage} />
-                        <Route path="/play" exact component={PlayArea} />
+                        <PrivateRoute path="/play" component={PlayArea} />
                     </Switch>
                 </div>
             </Router>
