@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import GameActions from "../Actions/GameActions";
+import { GameAdapters } from "../Adapters/GameAdapters";
 
 class GameInput extends Component {
     componentDidUpdate = () => {
@@ -26,7 +27,9 @@ class GameInput extends Component {
 
     gameOver = () => {
         if (this.props.input === this.props.paragraph) {
-            this.props.gameOver()
+            this.props.gameOver();
+            console.log(this.props.matchId)
+            GameAdapters.gameOver(this.props.matchId);
         }
     };
 
@@ -43,7 +46,8 @@ class GameInput extends Component {
 const mapStateToProps = state => {
     return {
         input: state.game.input,
-        paragraph: state.game.paragraph
+        paragraph: state.game.paragraph,
+        matchId: state.game.matchId
     };
 };
 
