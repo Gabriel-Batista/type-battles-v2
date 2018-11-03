@@ -6,7 +6,8 @@ const defaultState = {
     paragraph: "The quick fox jumps over the lazy dog",
     right: "",
     wrong: "",
-    gameOver: false
+    gameOver: false,
+    complete: false
 }
 
 const GameReducer = (state = defaultState, action) => {
@@ -21,6 +22,8 @@ const GameReducer = (state = defaultState, action) => {
             return { ...state, matchId: action.matchId}
         case GameConst.GAME_OVER:
             return{ ...state, gameOver: true}
+        case GameConst.COMPLETE:
+            return { ...state, complete: true}
         default:
             return state
     }

@@ -30,6 +30,11 @@ const GameActions = dispatch => {
             dispatch({
                 type: GameConst.GAME_OVER
             });
+        },
+        complete: () => {
+          dispatch({
+            type: GameConst.COMPLETE
+          })
         }
     };
 };
