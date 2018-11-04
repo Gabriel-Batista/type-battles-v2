@@ -6,7 +6,7 @@ import Results from "./Results";
 
 const PlayArea = props => (
     <React.Fragment>
-        {props.gameOver ? (
+        {props.gameOver || props.complete ? (
             <Results />
         ) : (
             <React.Fragment>
@@ -19,7 +19,8 @@ const PlayArea = props => (
 
 const mapStateToProps = state => {
     return {
-        gameOver: state.game.gameOver
+        gameOver: state.game.gameOver,
+        complete: state.game.complete
     };
 };
 

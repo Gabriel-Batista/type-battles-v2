@@ -39,24 +39,32 @@ class WaitingPage extends Component {
       }
     }
 
-    handleReceived = res => {
+    handleReceived = ({ match: res }) => {
         console.log("ActionCable:", res);
+        if(res.complete)  {
+          this.props.complete();
+        }
         this.setState({
-            seatsTaken: res.match.seats_taken,
+            seatsTaken: res.seats_taken,
         });
     };
 
+    renderActionCable = () => (
+        <React.Fragment>
+        {this.state.createWebSocket ? (
+          <ActionCable
+            channel={{
+              channel: "MatchesChannel",
+              match_id: this.props.matchId
+            }}
+            onReceived={this.handleReceived}
+          />
+        ) : null}
+        </React.Fragment>
+    )
+
     renderWaitingPage = () => (
         <React.Fragment>
-            {this.state.createWebSocket ? (
-                <ActionCable
-                    channel={{
-                        channel: "MatchesChannel",
-                        match_id: this.props.matchId
-                    }}
-                    onReceived={this.handleReceived}
-                />
-            ) : null}
             {this.state.matchReady ? (
                 <PlayArea />
             ) : (
@@ -73,7 +81,10 @@ class WaitingPage extends Component {
                 {this.state.redirect ? (
                     <Redirect to="/" />
                 ) : (
-                    this.renderWaitingPage()
+                    <React.Fragment>
+                        {this.renderActionCable()}
+                        {this.renderWaitingPage()}
+                    </React.Fragment>
                 )}
             </div>
         );

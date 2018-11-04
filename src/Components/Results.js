@@ -1,9 +1,23 @@
-import React from 'react'
+import React from "react";
+import { connect } from "react-redux";
 
-const Results = props =>  {
-  return  (
-    <p>You win!</p>
-  )
-}
+const Results = props => {
+    return (
+        <React.Fragment>
+            {props.complete && props.gameOver ? (
+                <p>You win!</p>
+            ) : (
+                <p>You lose!</p>
+            )}
+        </React.Fragment>
+    );
+};
 
-export default Results
+const mapStateToProps = state => {
+    return {
+        complete: state.game.complete,
+        gameOver: state.game.gameOver
+    };
+};
+
+export default connect(mapStateToProps)(Results);
