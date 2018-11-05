@@ -20,6 +20,14 @@ class WaitingPage extends Component {
         GameAdapters.join().then(res => {
             if (res.error && this.props.matchId === null) {
                 this.setState({ redirect: true });
+            } else if ( res.error && this.props.matchId !== null) {
+              GameAdapters.getMatch(this.props.matchId)
+              .then(res => {
+                this.setState({
+                  seatsTaken: res.seats_taken,
+                  createWebSocket: true
+                });
+              })
             } else {
                 console.log("fetch:", res);
                 this.props.updateMatchId(res.id);
