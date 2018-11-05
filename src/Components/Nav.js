@@ -7,11 +7,18 @@ import LoginModal from "./LoginModal";
 import Logout from "./Logout";
 
 import UserActions from "../Actions/UserActions";
+import { UserAdapters } from "../Adapters/UserAdapters"
 
 class Nav extends Component {
     componentDidMount = () => {
         if (this.props.loggedIn === false && localStorage.getItem("token")) {
             this.props.toggleLoggedIn();
+            UserAdapters.getUserInfo()
+            .then(res => {
+              this.props.updateUserId(res.id);
+              this.props.updateEmail(res.email);
+              this.props.updateName(res.name);
+            })
         }
     };
 
