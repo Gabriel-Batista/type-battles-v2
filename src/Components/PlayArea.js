@@ -4,14 +4,14 @@ import Paragraph from "./Paragraph";
 import GameInput from "./GameInput";
 import Results from "./Results";
 
-import { ContainingDicStyles } from '../Styles/PlayAreaStyles'
+import { ContainingDivStyles } from '../Styles/PlayAreaStyles'
 
 const PlayArea = props => (
     <React.Fragment>
         {props.gameOver || props.complete ? (
             <Results />
         ) : (
-            <div>
+            <div styles={ContainingDivStyles}>
                 <Paragraph />
                 <GameInput />
             </div>
