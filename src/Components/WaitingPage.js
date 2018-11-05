@@ -42,7 +42,7 @@ class WaitingPage extends Component {
     handleReceived = ({ match: res }) => {
         console.log("ActionCable:", res);
         if(res.complete)  {
-          this.props.complete();
+          this.props.setComplete();
         }
         this.setState({
             seatsTaken: res.seats_taken,
