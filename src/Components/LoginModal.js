@@ -30,6 +30,7 @@ class LoginModal extends Component {
                 localStorage.setItem("token", res.token);
                 this.props.updateEmail(email);
                 this.props.updateName(res.name);
+                this.props.updateUserId(res.id)
                 this.props.toggleLoggedIn();
                 this.handleClose();
             } else {
