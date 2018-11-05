@@ -21,5 +21,14 @@ export const GameAdapters = {
               complete: true
             })
         }).then(res => res.json());
+    },
+    getMatch: (id) => {
+      return fetch(FetchConst.API + "/matches/" + id, {
+        method: "GET",
+        headers: {
+          ...FetchConst.HEADERS,
+          Authorization: `Token token=${localStorage.getItem("token")}`
+        }
+      }).then(res => res.json())
     }
 };
