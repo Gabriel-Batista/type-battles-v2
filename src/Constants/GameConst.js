@@ -4,7 +4,8 @@ const GameConst = {
     UPDATE_INPUT: 'UPDATE_INPUT',
     UPDATE_MATCH_ID: 'UPDATE_MATCH_ID',
     GAME_OVER: 'GAME_OVER',
-    COMPLETE: 'COMPLETE'
+    COMPLETE: 'COMPLETE',
+    CLEAR: 'CLEAR'
 }
 
 export default GameConst

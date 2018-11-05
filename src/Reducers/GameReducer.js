@@ -24,6 +24,8 @@ const GameReducer = (state = defaultState, action) => {
             return{ ...state, gameOver: true}
         case GameConst.COMPLETE:
             return { ...state, complete: true}
+          case GameConst.CLEAR:
+            return defaultState
         default:
             return state
     }
