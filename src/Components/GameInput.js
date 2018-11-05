@@ -27,7 +27,7 @@ class GameInput extends Component {
 
     gameOver = () => {
         if (this.props.input === this.props.paragraph) {
-            this.props.gameOver();
+            this.props.setGameOver();
             console.log(this.props.matchId)
             GameAdapters.gameOver(this.props.matchId);
         }

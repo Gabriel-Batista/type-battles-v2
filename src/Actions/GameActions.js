@@ -26,12 +26,12 @@ const GameActions = dispatch => {
                 matchId: matchId
             });
         },
-        gameOver: () => {
+        setGameOver: () => {
             dispatch({
                 type: GameConst.GAME_OVER
             });
         },
-        complete: () => {
+        setComplete: () => {
           dispatch({
             type: GameConst.COMPLETE
           })
