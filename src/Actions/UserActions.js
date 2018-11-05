@@ -14,6 +14,12 @@ const UserActions = (dispatch) => {
         email: email
       })
     },
+    updateUserId: (id) => {
+      dispatch({
+        type: UserConst.UPDATE_USER_ID,
+        userId: id
+      })
+    },
     toggleLoggedIn: () => {
       dispatch({
         type: UserConst.TOGGLE_LOGGED_IN
