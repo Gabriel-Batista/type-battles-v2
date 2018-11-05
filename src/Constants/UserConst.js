@@ -3,7 +3,7 @@ const UserConst = {
   UPDATE_EMAIL: 'UPDATE_EMAIL',
   UPDATE_USER_ID: 'UPDATE_USER_ID',
   TOGGLE_LOGGED_IN: 'TOGGLE_LOGGED_IN',
-  CLEAR: 'CLEAR'
+  USER_CLEAR: 'USER_CLEAR'
 }
 
 export default UserConst

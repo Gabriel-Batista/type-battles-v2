@@ -5,7 +5,7 @@ const GameConst = {
     UPDATE_MATCH_ID: 'UPDATE_MATCH_ID',
     GAME_OVER: 'GAME_OVER',
     COMPLETE: 'COMPLETE',
-    CLEAR: 'CLEAR'
+    GAME_CLEAR: 'GAME_CLEAR'
 }
 
 export default GameConst

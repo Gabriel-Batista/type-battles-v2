@@ -38,7 +38,7 @@ const GameActions = dispatch => {
         },
         clear: () =>  {
           dispatch({
-            type: GameConst.CLEAR
+            type: GameConst.GAME_CLEAR
           })
         }
     };

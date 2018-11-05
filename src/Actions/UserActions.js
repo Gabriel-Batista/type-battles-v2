@@ -27,7 +27,7 @@ const UserActions = (dispatch) => {
     },
     clear: () =>  {
       dispatch({
-        type: UserConst.CLEAR
+        type: UserConst.USER_CLEAR
       })
     }
   }

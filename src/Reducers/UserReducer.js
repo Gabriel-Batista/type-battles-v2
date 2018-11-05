@@ -17,7 +17,7 @@ const UserReducer = (state = defaultState, action) => {
       return { ...state, userId: action.userId}
     case UserConst.TOGGLE_LOGGED_IN:
       return { ...state, loggedIn: !state.loggedIn }
-    case UserConst.CLEAR:
+    case UserConst.USER_CLEAR:
       return defaultState
     default:
       return state
