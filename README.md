@@ -5,14 +5,10 @@ A fresh take on improving your typing speed, compete against friends and see who
 ## Getting Started
 
 1. Clone or download the project to your computer.
-2. Open your terminal and navigate to the frontend folder by typing `cd ./frontend` 
-3. Type `npm install && npm start` to start your server.
+2. Open your terminal and type `npm install && npm start` to start your server.
 
-To run backend server check link below:
-
-1. Clone or download the project to your computer.
-2. Open your terminal and navigate to the backend folder by typing `cd ./backend` 
-3. Type `bundle install` then `rails s` to start your server
+To run backend server check server repo:
+[Backend](https://github.com/Gabriel-Batista/type-blattles-v2-backend)
 
 ## Built With
 
