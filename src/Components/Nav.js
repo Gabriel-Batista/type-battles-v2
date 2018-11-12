@@ -32,7 +32,7 @@ class Nav extends Component {
                     <NavLink to="/">TYPE BATTLES</NavLink>
                 </Menu.Item>
                 {this.props.loggedIn ? (
-                    <Logout clearUser={this.props.clear} />
+                    <Logout clearUser={this.props.userClear} clearGame={this.props.gameClear} />
                 ) : (
                     <LoginModal />
                 )}
