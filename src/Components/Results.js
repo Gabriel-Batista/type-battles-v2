@@ -6,7 +6,7 @@ import GameActions from "../Actions/GameActions";
 const Results = props => {
     const resetGameReducer = () => {
         UserAdapters.leaveMatch(props.userId);
-        props.updateMatchId(null);
+        this.props.gameClear()
     };
 
     return <React.Fragment>
