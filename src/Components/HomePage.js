@@ -1,5 +1,6 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { connect } from "react-redux"
+import { NavLink, Redirect } from "react-router-dom";
 import { Grid, Button, Icon, Header } from "semantic-ui-react";
 
 import {
@@ -32,24 +33,33 @@ const HomePage = props => {
         </NavLink>
     );
     return (
-        <Grid centered columns={2}>
-            <Grid.Row centered style={HeaderRowStyle}>
-                <Grid.Column textAlign="center">
-                    {renderHeader()}
-                    {renderPlayButton()}
-                    <p>Login to play</p>
-                </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-                <Grid.Column textAlign="center">
-                    <p>PLACEHOLDER</p>
-                </Grid.Column>
-                <Grid.Column textAlign="center">
-                    <p>Other</p>
-                </Grid.Column>
-            </Grid.Row>
-        </Grid>
+        <React.Fragment>
+          {props.matchId ? <Redirect to="/play" /> : null}
+            <Grid centered columns={2}>
+                <Grid.Row centered style={HeaderRowStyle}>
+                    <Grid.Column textAlign="center">
+                        {renderHeader()}
+                        {renderPlayButton()}
+                        <p>Login to play</p>
+                    </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                    <Grid.Column textAlign="center">
+                        <p>PLACEHOLDER</p>
+                    </Grid.Column>
+                    <Grid.Column textAlign="center">
+                        <p>Other</p>
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
+        </React.Fragment>
     );
 };
 
-export default HomePage;
+const mapStateToProps = state => {
+    return {
+        matchId: state.game.matchId
+    };
+};
+
+export default connect(mapStateToProps)(HomePage);
