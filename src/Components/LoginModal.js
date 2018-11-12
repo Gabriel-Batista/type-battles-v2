@@ -9,7 +9,9 @@ import {
     Menu
 } from "semantic-ui-react";
 import { LoginAdapters } from "../Adapters/LoginAdapters";
+import { UserAdapters } from "../Adapters/UserAdapters"
 import UserActions from "../Actions/UserActions";
+import GameActions from "../Actions/GameActions";
 
 class LoginModal extends Component {
     state = {
@@ -27,12 +29,17 @@ class LoginModal extends Component {
     handleLogin = (email, password) => {
         LoginAdapters.login(email, password).then(res => {
             if (res.token !== undefined) {
+              console.log(res)
                 localStorage.setItem("token", res.token);
                 this.props.updateEmail(email);
                 this.props.updateName(res.name);
-                this.props.updateUserId(res.id)
+                this.props.updateUserId(res.id);
                 this.props.toggleLoggedIn();
-                this.handleClose();
+                UserAdapters.getUserInfo(res.id)
+                .then( res => {
+                  this.props.updateMatchId(res.current_match.id)
+                  this.handleClose();
+                })
             } else {
                 this.setState({
                     error: true
@@ -112,7 +119,15 @@ class LoginModal extends Component {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+
+  return {
+    ...UserActions(dispatch),
+    ...GameActions(dispatch)
+  }
+}
+
 export default connect(
     null,
-    UserActions
+    mapDispatchToProps
 )(LoginModal);
