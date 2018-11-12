@@ -25,7 +25,7 @@ const UserActions = (dispatch) => {
         type: UserConst.TOGGLE_LOGGED_IN
       })
     },
-    clear: () =>  {
+    userClear: () =>  {
       dispatch({
         type: UserConst.USER_CLEAR
       })

@@ -36,7 +36,7 @@ const GameActions = dispatch => {
             type: GameConst.COMPLETE
           })
         },
-        clear: () =>  {
+        gameClear: () =>  {
           dispatch({
             type: GameConst.GAME_CLEAR
           })
