@@ -7,6 +7,7 @@ import LoginModal from "./LoginModal";
 import Logout from "./Logout";
 
 import UserActions from "../Actions/UserActions";
+import GameActions from "../Actions/GameActions"
 import { UserAdapters } from "../Adapters/UserAdapters"
 
 class Nav extends Component {
@@ -15,9 +16,11 @@ class Nav extends Component {
             this.props.toggleLoggedIn();
             UserAdapters.getUserInfo()
             .then(res => {
+              console.log(res)
               this.props.updateUserId(res.id);
               this.props.updateEmail(res.email);
               this.props.updateName(res.name);
+              this.props.updateMatchId(res.current_match.id)
             })
         }
     };
@@ -44,7 +47,15 @@ const mapStateToProps = state => {
     };
 };
 
+const mapDispatchToProps = dispatch =>  {
+
+  return {
+    ...UserActions(dispatch),
+    ...GameActions(dispatch)
+  }
+}
+
 export default connect(
     mapStateToProps,
-    UserActions
+    mapDispatchToProps
 )(Nav);
