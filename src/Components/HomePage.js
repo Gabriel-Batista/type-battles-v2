@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
 import { Grid, Button, Icon, Header } from "semantic-ui-react";
 
@@ -25,7 +25,11 @@ const HomePage = props => {
     const renderPlayButton = () => (
         <NavLink to="/play">
             <Button size="massive" style={PlayButtonStyle} animated="vertical">
-                <Button.Content visible>Race Now!</Button.Content>
+                {props.matchId ? (
+                    <Button.Content visible>Rejoin Match!</Button.Content>
+                ) : (
+                    <Button.Content visible>Race Now!</Button.Content>
+                )}
                 <Button.Content hidden>
                     <Icon name="car" />
                 </Button.Content>
@@ -34,7 +38,6 @@ const HomePage = props => {
     );
     return (
         <React.Fragment>
-          {props.matchId ? <Redirect to="/play" /> : null}
             <Grid centered columns={2}>
                 <Grid.Row centered style={HeaderRowStyle}>
                     <Grid.Column textAlign="center">
