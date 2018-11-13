@@ -1,18 +1,36 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 
 import CarAnimation from "./CarAnimation";
 
 class CarContainer extends Component {
     constructor(props) {
         super(props);
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
         this.state = {
-            rerender: false
+            rerender: false,
+            windowWidth: 0,
+            windowHeight: 0
         };
+    }
+    componentDidMount = () => {
+        this.updateWindowDimensions();
+        window.addEventListener("resize", this.updateWindowDimensions);
+    };
+
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updateWindowDimensions);
+        clearInterval(this.intervalId);
+    }
+
+    updateWindowDimensions() {
+        this.setState({
+            windowWidth: window.innerWidth,
+            windowHeight: window.innerHeight
+        });
     }
 
     switch = () => {
-        setInterval(() => {
+        this.intervalId = setInterval(() => {
             this.setState({ test: !this.state.rerender });
         }, 2000);
     };
@@ -24,8 +42,9 @@ class CarContainer extends Component {
     render() {
         return (
             <CarAnimation
-                src={require(`../Assets/car${this.getRandomInt(1,4)}.svg`)}
+                src={require(`../Assets/car${this.getRandomInt(1, 4)}.svg`)}
                 rand={this.getRandomInt(0, 1000)}
+                windowWidth={this.state.windowWidth}
                 switch={this.switch}
                 test={this.state.test}
             />

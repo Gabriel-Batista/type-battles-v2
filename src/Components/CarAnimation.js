@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import posed from "react-pose";
-import { easing, tween, styler } from "popmotion";
 
 class CarAnimation extends Component {
-    state = {
-        isVisible: true
-    };
-
-    componentWillMount() {
-        this.carRef = React.createRef();
+    constructor(props) {
+        super(props);
+        this.state = {
+            isVisible: true
+        };
     }
 
     CarImage = posed.img({
@@ -19,11 +17,11 @@ class CarAnimation extends Component {
             width: "150px",
             transition: {
                 duration: 0,
-                ease: [0.2, 0.4, 0.6, 0.99]
+                ease: [0.2, 0.4, 0.6, 0.8]
             }
         },
         bottom: {
-            x: 1500,
+            x: ({ windowWidth }) => windowWidth,
             y: ({ rand }) => rand,
             height: "150px",
             width: "150px",
@@ -34,13 +32,18 @@ class CarAnimation extends Component {
         }
     });
 
-    componentDidMount() {
-        setInterval(() => {
+    componentDidMount= () => {
+        this.intervalId = setInterval(() => {
             this.setState({
                 isVisible: !this.state.isVisible
             });
         }, 2000);
-      this.props.switch()
+        this.carRef = React.createRef();
+        this.props.switch();
+    }
+
+    componentWillUnmount= () =>  {
+      clearInterval(this.intervalId)
     }
 
     render() {
