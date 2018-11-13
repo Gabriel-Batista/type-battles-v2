@@ -20,7 +20,9 @@ class Nav extends Component {
               this.props.updateUserId(res.id);
               this.props.updateEmail(res.email);
               this.props.updateName(res.name);
-              this.props.updateMatchId(res.current_match.id)
+              if (res.current_match !== null) {
+                this.props.updateMatchId(res.current_match.id)
+              }
             })
         }
     };

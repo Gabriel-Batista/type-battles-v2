@@ -37,7 +37,9 @@ class LoginModal extends Component {
                 this.props.toggleLoggedIn();
                 UserAdapters.getUserInfo(res.id)
                 .then( res => {
-                  this.props.updateMatchId(res.current_match.id)
+                  if(res.current_match !== null)  {
+                    this.props.updateMatchId(res.current_match.id)
+                  }
                   this.handleClose();
                 })
             } else {
