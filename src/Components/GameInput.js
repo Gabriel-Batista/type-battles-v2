@@ -19,7 +19,7 @@ class GameInput extends Component {
             value.charAt(i) === this.props.paragraph.charAt(i) &&
             wrong.length === 0
                 ? (right += value.charAt(i))
-                : (wrong += value.charAt(i));
+                : (wrong += this.props.paragraph.charAt(i));
         }
 
         this.props.updateRight(right);
