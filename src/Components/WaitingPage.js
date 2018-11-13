@@ -6,6 +6,7 @@ import { GameAdapters } from "../Adapters/GameAdapters";
 import GameActions from "../Actions/GameActions";
 
 import PlayArea from "./PlayArea";
+import CarContainer from "./CarContainer";
 
 import { Grid, Icon, Header } from "semantic-ui-react";
 import { H1Style, H2Style, HeaderRowStyle } from "../Styles/WaitingPageStyles";
@@ -76,12 +77,12 @@ class WaitingPage extends Component {
         let result = [];
         for (let i = 0; i < seatsTaken; i++) {
             result.push(
-                <Icon name="check" size="big" color="blue" circular inverted />
+                <Icon key={i} name="check" size="big" color="blue" circular inverted />
             );
         }
         for (let i = 0; i < 4 - seatsTaken; i++) {
             result.push(
-                <Icon name="search" size="big" color="red" circular inverted />
+                <Icon key={i} name="search" size="big" color="red" circular inverted />
             );
         }
         return result;
@@ -92,8 +93,8 @@ class WaitingPage extends Component {
             {this.state.matchReady ? (
                 <PlayArea />
             ) : (
-                <Grid column={3}>
-                    <Grid.Row centered style={HeaderRowStyle}>
+                <Grid centered column={3}>
+                    <Grid.Row style={HeaderRowStyle}>
                         <React.Fragment>
                             <Header>
                                 <Header.Content style={H1Style}>
@@ -106,6 +107,9 @@ class WaitingPage extends Component {
                                 </Header.Subheader>
                             </Header>
                         </React.Fragment>
+                    </Grid.Row>
+                    <Grid.Row>
+                        <CarContainer />
                     </Grid.Row>
                 </Grid>
             )}
