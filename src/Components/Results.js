@@ -1,24 +1,34 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { UserAdapters } from "../Adapters/UserAdapters";
 import GameActions from "../Actions/GameActions";
 
-const Results = props => {
-    const resetGameReducer = () => {
-        UserAdapters.leaveMatch(props.userId);
-        this.props.gameClear()
+class Results extends Component {
+    resetGameReducer = () => {
+        UserAdapters.leaveMatch(this.props.userId);
+        this.props.gameClear();
     };
 
-    return <React.Fragment>
-            {props.complete && props.gameOver ? <React.Fragment>
-                    <p>You win!</p>
-                    {resetGameReducer()}
-                </React.Fragment> : <React.Fragment>
-                    <p>You lose!</p>
-                    {resetGameReducer()}
-                </React.Fragment>}
-        </React.Fragment>;
-};
+    componentWillUnmount() {
+        this.resetGameReducer();
+    }
+
+    render() {
+        return (
+            <React.Fragment>
+                {this.props.complete && this.props.gameOver ? (
+                    <React.Fragment>
+                        <p>You win!</p>
+                    </React.Fragment>
+                ) : (
+                    <React.Fragment>
+                        <p>You lose!</p>
+                    </React.Fragment>
+                )}
+            </React.Fragment>
+        );
+    }
+}
 
 const mapStateToProps = state => {
     return {
