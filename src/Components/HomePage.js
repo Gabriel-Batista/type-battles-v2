@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Grid, Button, Icon, Header } from "semantic-ui-react";
 
 import {
@@ -10,8 +10,8 @@ import {
     H2Style
 } from "../Styles/HomePageStyles";
 
-const HomePage = props => {
-    const renderHeader = () => (
+class HomePage extends Component {
+    renderHeader = () => (
         <React.Fragment>
             <Header as="h1" content="TYPE BATTLES" inverted style={H1Style} />
             <Header
@@ -22,10 +22,10 @@ const HomePage = props => {
             />
         </React.Fragment>
     );
-    const renderPlayButton = () => (
+    renderPlayButton = () => (
         <NavLink to="/play">
             <Button size="massive" style={PlayButtonStyle} animated="vertical">
-                {props.matchId ? (
+                {this.props.matchId ? (
                     <Button.Content visible>Rejoin Match!</Button.Content>
                 ) : (
                     <Button.Content visible>Race Now!</Button.Content>
@@ -36,28 +36,26 @@ const HomePage = props => {
             </Button>
         </NavLink>
     );
-    return (
-        <React.Fragment>
-            <Grid centered columns={2}>
-                <Grid.Row centered style={HeaderRowStyle}>
-                    <Grid.Column textAlign="center">
-                        {renderHeader()}
-                        {renderPlayButton()}
-                        <p>Login to play</p>
-                    </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                    <Grid.Column textAlign="center">
-                        <p>PLACEHOLDER</p>
-                    </Grid.Column>
-                    <Grid.Column textAlign="center">
-                        <p>Other</p>
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
-        </React.Fragment>
-    );
-};
+
+    render() {
+        return (
+            <React.Fragment>
+                <Grid centered columns={2}>
+                    <Grid.Row centered style={HeaderRowStyle}>
+                        <Grid.Column textAlign="center">
+                            {this.renderHeader()}
+                            {this.renderPlayButton()}
+                            <p>Login to play</p>
+                        </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                      
+                    </Grid.Row>
+                </Grid>
+            </React.Fragment>
+        );
+    }
+}
 
 const mapStateToProps = state => {
     return {
