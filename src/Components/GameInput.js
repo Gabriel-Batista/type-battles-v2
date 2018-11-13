@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import GameActions from "../Actions/GameActions";
 import { GameAdapters } from "../Adapters/GameAdapters";
 
+import { InputStyle, InputWrapperStyle } from "../Styles/GameInputStyles";
+
 class GameInput extends Component {
     componentDidUpdate = () => {
         this.gameOver();
@@ -28,17 +30,20 @@ class GameInput extends Component {
     gameOver = () => {
         if (this.props.input === this.props.paragraph) {
             this.props.setGameOver();
-            console.log(this.props.matchId)
+            console.log(this.props.matchId);
             GameAdapters.gameOver(this.props.matchId);
         }
     };
 
     render() {
         return (
+          <div style={InputWrapperStyle}>
             <input
-                value={this.props.input}
-                onChange={e => this.handleInput(e.target.value)}
+              value={this.props.input}
+              onChange={e => this.handleInput(e.target.value)}
+              style={InputStyle}
             />
+            </div>
         );
     }
 }
