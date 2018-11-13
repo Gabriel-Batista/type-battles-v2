@@ -5,21 +5,30 @@ import GameActions from "../Actions/GameActions";
 
 import { Icon, Grid } from "semantic-ui-react";
 import {
-    ParagraphStyles,
-    ParagraphWrapperStyle
+    ParagraphContainerStyles,
+    RightStyle,
+    WrongStyle,
+    ParagraphStyle
 } from "../Styles/ParagraphStyles";
 
 const Paragraph = props => {
+    const formatParagraph = () => {
+        return props.paragraph.slice(props.right.length + props.wrong.length);
+    };
+
     return (
         <div>
-            <span style={ParagraphStyles}>
+            <span style={ParagraphContainerStyles}>
                 <Icon name="quote left" size="small" />
-                {props.paragraph}
-                <Icon name="quote right"size="small" />
+                <span style={RightStyle}>
+                    {props.right}
+                </span>
+                <span style={WrongStyle}>
+                    {props.wrong}
+                </span>
+          |<span style={ParagraphStyle}>{formatParagraph()}</span>
+                <Icon name="quote right" size="small" />
             </span>
-
-            <span style={{ color: "green" }}>{props.right}</span>
-            <span style={{ color: "red" }}>{props.wrong}</span>
         </div>
     );
 };
