@@ -14,7 +14,7 @@ export const RightStyle = { color: "green", whiteSpace: "pre" };
 
 export const WrongStyle = { color: "red", whiteSpace: "pre" };
 
-export const ParagraphStyle = { whiteSpace: "pre" }
+export const ParagraphStyle = { whiteSpace: "normal" }
 
 // export const ParagraphWrapperStyle = {
 //     display: "flex",

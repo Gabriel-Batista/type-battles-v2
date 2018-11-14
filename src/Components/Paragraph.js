@@ -20,13 +20,15 @@ const Paragraph = props => {
         <div>
             <span style={ParagraphContainerStyles}>
                 <Icon name="quote left" size="small" />
-                <span style={RightStyle}>
-                    {props.right}
+                <span style={{margin: "4em", lineHeight: "1em"}}>
+                    <span style={RightStyle}>{props.right}</span>
+                    <span style={WrongStyle}>{props.wrong}</span>|
+                    {/*Temporarily use dangerouslySetInnerHTML, come back later and use regex to pull unicode char code.*/}
+                    <span
+                        style={ParagraphStyle}
+                        dangerouslySetInnerHTML={{ __html: formatParagraph() }}
+                    />
                 </span>
-                <span style={WrongStyle}>
-                    {props.wrong}
-                </span>
-          |<span style={ParagraphStyle}>{formatParagraph()}</span>
                 <Icon name="quote right" size="small" />
             </span>
         </div>
