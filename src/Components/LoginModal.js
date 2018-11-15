@@ -39,6 +39,7 @@ class LoginModal extends Component {
                 .then( res => {
                   if(res.current_match !== null)  {
                     this.props.updateMatchId(res.current_match.id)
+                    this.props.updateParagraph(res.current_match.paragraph)
                   }
                   this.handleClose();
                 })
