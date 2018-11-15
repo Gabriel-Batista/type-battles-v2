@@ -33,6 +33,15 @@ class WaitingPage extends Component {
             } else {
                 console.log("fetch:", res);
                 this.props.updateMatchId(res.id);
+                let paragraph = res.paragraph
+                if (res.paragraph.match(/&#([0-9]+);/) !== null)  {
+                  let charCode = res.paragraph.match(/&#([0-9]+);/)[1];
+                  paragraph.replace(
+                    /&#[0-9]+;/,
+                    String.fromCharCode(charCode)
+                  );
+                }
+                this.props.updateParagraph(paragraph);
                 this.setState({
                     seatsTaken: res.seats_taken,
                     createWebSocket: true
@@ -77,12 +86,26 @@ class WaitingPage extends Component {
         let result = [];
         for (let i = 0; i < seatsTaken; i++) {
             result.push(
-                <Icon key={i} name="check" size="big" color="blue" circular inverted />
+                <Icon
+                    key={i}
+                    name="check"
+                    size="big"
+                    color="blue"
+                    circular
+                    inverted
+                />
             );
         }
         for (let i = 0; i < 4 - seatsTaken; i++) {
             result.push(
-                <Icon key={i} name="search" size="big" color="red" circular inverted />
+                <Icon
+                    key={i}
+                    name="search"
+                    size="big"
+                    color="red"
+                    circular
+                    inverted
+                />
             );
         }
         return result;

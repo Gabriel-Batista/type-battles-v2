@@ -26,6 +26,12 @@ const GameActions = dispatch => {
                 matchId: matchId
             });
         },
+        updateParagraph: paragraph => {
+            dispatch({
+              type: GameConst.UPDATE_PARAGRAPH,
+              paragraph: paragraph
+            })
+        },
         setGameOver: () => {
             dispatch({
                 type: GameConst.GAME_OVER
