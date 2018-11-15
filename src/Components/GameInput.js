@@ -39,6 +39,7 @@ class GameInput extends Component {
         return (
           <div style={InputWrapperStyle}>
             <input
+              autoFocus
               value={this.props.input}
               onChange={e => this.handleInput(e.target.value)}
               style={InputStyle}
