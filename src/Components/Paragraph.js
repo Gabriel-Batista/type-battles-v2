@@ -5,10 +5,13 @@ import GameActions from "../Actions/GameActions";
 
 import { Icon, Grid } from "semantic-ui-react";
 import {
-    ParagraphContainerStyles,
+    ParagraphContainerStyle,
     RightStyle,
     WrongStyle,
-    ParagraphStyle
+    ParagraphStyle,
+    InnerContainerStyle,
+    LeftIconStyle,
+    RightIconStyle
 } from "../Styles/ParagraphStyles";
 
 const Paragraph = props => {
@@ -18,18 +21,14 @@ const Paragraph = props => {
 
     return (
         <div>
-            <span style={ParagraphContainerStyles}>
-                <Icon name="quote left" size="small" />
-                <span style={{margin: "4em", lineHeight: "1em"}}>
+            <span style={ParagraphContainerStyle}>
+                <Icon name="quote left" size="large" style={LeftIconStyle} />
+                <span style={InnerContainerStyle}>
                     <span style={RightStyle}>{props.right}</span>
                     <span style={WrongStyle}>{props.wrong}</span>|
-                    {/*Temporarily use dangerouslySetInnerHTML, come back later and use regex to pull unicode char code.*/}
-                    <span
-                        style={ParagraphStyle}
-                        dangerouslySetInnerHTML={{ __html: formatParagraph() }}
-                    />
+                    <span style={ParagraphStyle}>{formatParagraph()}</span>
                 </span>
-                <Icon name="quote right" size="small" />
+                <Icon name="quote right" size="large" style={RightIconStyle} />
             </span>
         </div>
     );
