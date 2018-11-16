@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import { GameAdapters } from "../Adapters/GameAdapters"
+import { GameAdapters } from "../Adapters/GameAdapters";
 
 import { Grid, Button, Icon, Header } from "semantic-ui-react";
 import {
@@ -13,7 +13,6 @@ import {
 } from "../Styles/HomePageStyles";
 
 class HomePage extends Component {
-
     renderHeader = () => (
         <React.Fragment>
             <Header as="h1" content="TYPE BATTLES" inverted style={H1Style} />
@@ -26,18 +25,35 @@ class HomePage extends Component {
         </React.Fragment>
     );
     renderPlayButton = () => (
-        <NavLink to="/play">
-            <Button size="massive" style={PlayButtonStyle} animated="vertical">
-                {this.props.matchId ? (
-                    <Button.Content visible>Rejoin Match!</Button.Content>
-                ) : (
-                    <Button.Content visible>Race Now!</Button.Content>
-                )}
-                <Button.Content hidden>
-                    <Icon name="car" />
-                </Button.Content>
-            </Button>
-        </NavLink>
+        <React.Fragment>
+            {this.props.loggedIn ? (
+                <NavLink to="/play">
+                    <Button
+                        size="massive"
+                        style={PlayButtonStyle}
+                        animated="vertical"
+                    >
+                        {this.props.matchId ? (
+                            <Button.Content visible>
+                                Rejoin Match!
+                            </Button.Content>
+                        ) : (
+                            <Button.Content visible>Race Now!</Button.Content>
+                        )}
+                        <Button.Content hidden>
+                            <Icon name="car" />
+                        </Button.Content>
+                    </Button>
+                </NavLink>
+            ) : (
+                <Header
+                    as="h2"
+                    content="Log in to play!"
+                    inverted
+                    style={H2Style}
+                />
+            )}
+        </React.Fragment>
     );
 
     render() {
@@ -51,9 +67,7 @@ class HomePage extends Component {
                             <p>Login to play</p>
                         </Grid.Column>
                     </Grid.Row>
-                    <Grid.Row>
-                      
-                    </Grid.Row>
+                    <Grid.Row />
                 </Grid>
             </React.Fragment>
         );
@@ -62,7 +76,8 @@ class HomePage extends Component {
 
 const mapStateToProps = state => {
     return {
-        matchId: state.game.matchId
+        matchId: state.game.matchId,
+        loggedIn: state.user.loggedIn
     };
 };
 
