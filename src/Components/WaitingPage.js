@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { ActionCable } from "react-actioncable-provider";
 import { GameAdapters } from "../Adapters/GameAdapters";
+import { UserAdapters } from "../Adapters/UserAdapters"
 import GameActions from "../Actions/GameActions";
 
 import PlayArea from "./PlayArea";
@@ -33,15 +34,7 @@ class WaitingPage extends Component {
             } else {
                 console.log("fetch:", res);
                 this.props.updateMatchId(res.id);
-                let paragraph = res.paragraph
-                if (res.paragraph.match(/&#([0-9]+);/) !== null)  {
-                  let charCode = res.paragraph.match(/&#([0-9]+);/)[1];
-                  paragraph.replace(
-                    /&#[0-9]+;/,
-                    String.fromCharCode(charCode)
-                  );
-                }
-                this.props.updateParagraph(paragraph);
+                this.props.updateParagraph(res.paragraph);
                 this.setState({
                     seatsTaken: res.seats_taken,
                     createWebSocket: true
@@ -62,6 +55,7 @@ class WaitingPage extends Component {
         console.log("ActionCable:", res);
         if (res.complete) {
             this.props.setComplete();
+            UserAdapters.leaveMatch(this.props.userId)
         }
         this.setState({
             seatsTaken: res.seats_taken
@@ -157,7 +151,8 @@ class WaitingPage extends Component {
 
 const mapStateToProps = state => {
     return {
-        matchId: state.game.matchId
+        matchId: state.game.matchId,
+        userId: state.user.userId
     };
 };
 
