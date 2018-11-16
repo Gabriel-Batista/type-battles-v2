@@ -14,5 +14,20 @@ export const LoginAdapters = {
       })
     })
     .then(res => res.json())
+  },
+  signup: (email, password, name) =>  {
+    return fetch(FetchConst.API + '/users', {
+      method: "POST",
+      headers: {
+        ...FetchConst.HEADERS,
+        Authorization: `Token token=${localStorage.getItem("token")}`
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        name: name
+      })
+    })
+      .then(res => res.json())
   }
 }

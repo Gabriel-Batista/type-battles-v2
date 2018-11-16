@@ -1,48 +1,49 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-    Button,
-    Header,
-    Icon,
-    Modal,
-    Form,
-    Menu
-} from "semantic-ui-react";
+import { Button, Header, Icon, Modal, Form, Menu } from "semantic-ui-react";
 import { LoginAdapters } from "../Adapters/LoginAdapters";
-import { UserAdapters } from "../Adapters/UserAdapters"
+import { UserAdapters } from "../Adapters/UserAdapters";
 import UserActions from "../Actions/UserActions";
 import GameActions from "../Actions/GameActions";
 
 class LoginModal extends Component {
     state = {
         modalOpen: false,
+        signup: false,
+        name: "",
         email: "",
         username: "",
         password: "",
         error: false
     };
 
-    handleOpen = () => this.setState({ modalOpen: true });
+    handleOpen = signup =>
+        signup
+            ? this.setState({ modalOpen: true, signup: true })
+            : this.setState({ modalOpen: true });
 
-    handleClose = () => this.setState({ modalOpen: false });
+    handleClose = () => this.setState({ modalOpen: false, signup: false });
 
-    handleLogin = (email, password) => {
-        LoginAdapters.login(email, password).then(res => {
+    handleLogin = (email, password, name) => {
+        console.log(this.state.signup);
+        let response = this.state.signup
+            ? LoginAdapters.signup(email, password, name)
+            : LoginAdapters.login(email, password);
+        response.then(res => {
             if (res.token !== undefined) {
-              console.log(res)
+                console.log(res);
                 localStorage.setItem("token", res.token);
                 this.props.updateEmail(email);
                 this.props.updateName(res.name);
                 this.props.updateUserId(res.id);
                 this.props.toggleLoggedIn();
-                UserAdapters.getUserInfo(res.id)
-                .then( res => {
-                  if(res.current_match !== null)  {
-                    this.props.updateMatchId(res.current_match.id)
-                    this.props.updateParagraph(res.current_match.paragraph)
-                  }
-                  this.handleClose();
-                })
+                UserAdapters.getUserInfo(res.id).then(res => {
+                    if (res.current_match !== null) {
+                        this.props.updateMatchId(res.current_match.id);
+                        this.props.updateParagraph(res.current_match.paragraph);
+                    }
+                    this.handleClose();
+                });
             } else {
                 this.setState({
                     error: true
@@ -55,9 +56,14 @@ class LoginModal extends Component {
         return (
             <Modal
                 trigger={
-                    <Menu.Item position="right" onClick={this.handleOpen}>
-                        Login
-                    </Menu.Item>
+                    <Menu.Menu position="right">
+                        <Menu.Item onClick={() => this.handleOpen(true)}>
+                            Signup
+                        </Menu.Item>
+                        <Menu.Item onClick={() => this.handleOpen(false)}>
+                            Login
+                        </Menu.Item>
+                    </Menu.Menu>
                 }
                 open={this.state.modalOpen}
                 onClose={this.handleClose}
@@ -66,6 +72,21 @@ class LoginModal extends Component {
                 <Header icon="lock" content="Login" />
                 <Modal.Content>
                     <Form>
+                        {this.state.signup ? (
+                            <Form.Field>
+                                <label>Name</label>
+                                <Form.Input
+                                    error={this.state.error}
+                                    autoFocus
+                                    id="name"
+                                    placeholder="Name..."
+                                    value={this.state.name}
+                                    onChange={e =>
+                                        this.setState({ name: e.target.value })
+                                    }
+                                />
+                            </Form.Field>
+                        ) : null}
                         <Form.Field>
                             <label>Email</label>
                             <Form.Input
@@ -109,7 +130,8 @@ class LoginModal extends Component {
                         onClick={() => {
                             this.handleLogin(
                                 this.state.email,
-                                this.state.password
+                                this.state.password,
+                                this.state.name
                             );
                         }}
                         inverted
@@ -123,12 +145,11 @@ class LoginModal extends Component {
 }
 
 const mapDispatchToProps = dispatch => {
-
-  return {
-    ...UserActions(dispatch),
-    ...GameActions(dispatch)
-  }
-}
+    return {
+        ...UserActions(dispatch),
+        ...GameActions(dispatch)
+    };
+};
 
 export default connect(
     null,
