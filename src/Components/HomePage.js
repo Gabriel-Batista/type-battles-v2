@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { Grid, Button, Icon, Header } from "semantic-ui-react";
 
+import { GameAdapters } from "../Adapters/GameAdapters"
+
+import { Grid, Button, Icon, Header } from "semantic-ui-react";
 import {
     HeaderRowStyle,
     PlayButtonStyle,
@@ -11,6 +13,7 @@ import {
 } from "../Styles/HomePageStyles";
 
 class HomePage extends Component {
+
     renderHeader = () => (
         <React.Fragment>
             <Header as="h1" content="TYPE BATTLES" inverted style={H1Style} />
