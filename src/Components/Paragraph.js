@@ -25,7 +25,7 @@ const Paragraph = props => {
                 <Icon name="quote left" size="large" style={LeftIconStyle} />
                 <span style={InnerContainerStyle}>
                     <span style={RightStyle}>{props.right}</span>
-                    <span style={WrongStyle}>{props.wrong}</span>|
+                    <span style={WrongStyle}>{props.wrong}</span>
                     <span style={ParagraphStyle}>{formatParagraph()}</span>
                 </span>
                 <Icon name="quote right" size="large" style={RightIconStyle} />
