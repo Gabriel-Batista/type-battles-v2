@@ -12,7 +12,7 @@ export const ParagraphContainerStyle = {
 
 export const RightStyle = { color: "green", whiteSpace: "normal" };
 
-export const WrongStyle = { color: "red", whiteSpace: "normal" };
+export const WrongStyle = { backgroundColor: "rgba(228, 51, 51, 0.4)", whiteSpace: "normal" };
 
 export const ParagraphStyle = { whiteSpace: "normal" }
 
