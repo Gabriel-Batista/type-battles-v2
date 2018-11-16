@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { UserAdapters } from "../Adapters/UserAdapters";
 import GameActions from "../Actions/GameActions";
+
+import { H1Style, HeaderRowStyle } from "../Styles/ResultStyle";
+import { Header, Icon, Grid } from "semantic-ui-react";
 
 class Results extends Component {
     resetGameReducer = () => {
-        UserAdapters.leaveMatch(this.props.userId);
         this.props.gameClear();
     };
 
@@ -13,17 +14,43 @@ class Results extends Component {
         this.resetGameReducer();
     }
 
+    renderHeader = (headerContent, iconName ) => (
+        <React.Fragment>
+            <Header as="h1" icon textAlign="center" />
+            <Icon name={iconName} size="massive" inverted />
+            <Header.Content inverted style={H1Style}>
+                {headerContent}
+            </Header.Content>
+        </React.Fragment>
+    );
+
     render() {
         return (
             <React.Fragment>
                 {this.props.complete && this.props.gameOver ? (
-                    <React.Fragment>
-                        <p>You win!</p>
-                    </React.Fragment>
+                    <Grid centered columns={2}>
+                        <Grid.Row centered style={HeaderRowStyle}>
+                            <Grid.Column
+                                textAlign="center"
+                                verticalAlign="middle"
+                            >
+                                {this.renderHeader("You Win!", "winner")}
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row />
+                    </Grid>
                 ) : (
-                    <React.Fragment>
-                        <p>You lose!</p>
-                    </React.Fragment>
+                    <Grid centered columns={2}>
+                        <Grid.Row centered style={HeaderRowStyle}>
+                            <Grid.Column
+                                textAlign="center"
+                                verticalAlign="middle"
+                            >
+                                {this.renderHeader("You Lose!", "thumbs down")}
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row />
+                    </Grid>
                 )}
             </React.Fragment>
         );
