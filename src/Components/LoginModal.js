@@ -69,7 +69,9 @@ class LoginModal extends Component {
                 onClose={this.handleClose}
                 size="small"
             >
-                <Header icon="lock" content="Login" />
+                <Header icon="lock" >
+                  {this.state.signup ? "Signup" : "Login"}
+                </Header>
                 <Modal.Content>
                     <Form>
                         {this.state.signup ? (
@@ -136,7 +138,8 @@ class LoginModal extends Component {
                         }}
                         inverted
                     >
-                        <Icon name="checkmark" /> Login
+                        <Icon name="checkmark" />
+                        {this.state.signup ? "Signup" : "Login"}
                     </Button>
                 </Modal.Actions>
             </Modal>
