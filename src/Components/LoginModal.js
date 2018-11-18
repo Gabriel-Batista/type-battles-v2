@@ -69,8 +69,8 @@ class LoginModal extends Component {
                 onClose={this.handleClose}
                 size="small"
             >
-                <Header icon="lock" >
-                  {this.state.signup ? "Signup" : "Login"}
+                <Header icon="lock">
+                    {this.state.signup ? "Signup" : "Login"}
                 </Header>
                 <Modal.Content>
                     <Form>
@@ -93,7 +93,7 @@ class LoginModal extends Component {
                             <label>Email</label>
                             <Form.Input
                                 error={this.state.error}
-                                autoFocus
+                                autoFocus={this.state.signup ? undefined : true}
                                 id="email"
                                 placeholder="Email..."
                                 value={this.state.email}
