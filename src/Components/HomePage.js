@@ -11,6 +11,7 @@ import {
     H1Style,
     H2Style
 } from "../Styles/HomePageStyles";
+import LoginModal from "./LoginModal";
 
 class HomePage extends Component {
     renderHeader = () => (
@@ -46,12 +47,7 @@ class HomePage extends Component {
                     </Button>
                 </NavLink>
             ) : (
-                <Header
-                    as="h2"
-                    content="Log in to play!"
-                    inverted
-                    style={H2Style}
-                />
+                <LoginModal />
             )}
         </React.Fragment>
     );
@@ -64,7 +60,6 @@ class HomePage extends Component {
                         <Grid.Column textAlign="center">
                             {this.renderHeader()}
                             {this.renderPlayButton()}
-                            <p>Login to play</p>
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row />

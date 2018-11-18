@@ -36,7 +36,7 @@ class Nav extends Component {
                 {this.props.loggedIn ? (
                     <Logout clearUser={this.props.userClear} clearGame={this.props.gameClear} />
                 ) : (
-                    <LoginModal />
+                    <LoginModal nav/>
                 )}
             </Menu>
         );

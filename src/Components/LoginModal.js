@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Header, Icon, Modal, Form, Menu } from "semantic-ui-react";
+import { LoginButtonStyle, SignupButtonStyle } from "../Styles/LoginModalStyles";
 import { LoginAdapters } from "../Adapters/LoginAdapters";
 import { UserAdapters } from "../Adapters/UserAdapters";
 import UserActions from "../Actions/UserActions";
@@ -56,14 +57,35 @@ class LoginModal extends Component {
         return (
             <Modal
                 trigger={
-                    <Menu.Menu position="right">
-                        <Menu.Item onClick={() => this.handleOpen(true)}>
-                            Signup
-                        </Menu.Item>
-                        <Menu.Item onClick={() => this.handleOpen(false)}>
-                            Login
-                        </Menu.Item>
-                    </Menu.Menu>
+                    this.props.nav ? (
+                        <Menu.Menu position="right">
+                            <Menu.Item onClick={() => this.handleOpen(true)}>
+                                Signup
+                            </Menu.Item>
+                            <Menu.Item onClick={() => this.handleOpen(false)}>
+                                Login
+                            </Menu.Item>
+                        </Menu.Menu>
+                    ) : (
+                        <React.Fragment>
+                            <Button
+                                size="massive"
+                                onClick={() => this.handleOpen(false)}
+                                style={SignupButtonStyle}
+                                animated="vertical"
+                            >
+                                <Button.Content visible>Join!</Button.Content>
+                            </Button>
+                            <Button
+                                size="massive"
+                                onClick={() => this.handleOpen(true)}
+                                style={LoginButtonStyle}
+                                animated="vertical"
+                            >
+                                <Button.Content visible>Login</Button.Content>
+                            </Button>
+                        </React.Fragment>
+                    )
                 }
                 open={this.state.modalOpen}
                 onClose={this.handleClose}
