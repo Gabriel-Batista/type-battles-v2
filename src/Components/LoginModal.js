@@ -70,17 +70,15 @@ class LoginModal extends Component {
                         <React.Fragment>
                             <Button
                                 size="massive"
-                                onClick={() => this.handleOpen(false)}
+                                onClick={() => this.handleOpen(true)}
                                 style={SignupButtonStyle}
-                                animated="vertical"
                             >
-                                <Button.Content visible>Join!</Button.Content>
+                                <Button.Content visible>Signup</Button.Content>
                             </Button>
                             <Button
                                 size="massive"
-                                onClick={() => this.handleOpen(true)}
+                                onClick={() => this.handleOpen(false)}
                                 style={LoginButtonStyle}
-                                animated="vertical"
                             >
                                 <Button.Content visible>Login</Button.Content>
                             </Button>
