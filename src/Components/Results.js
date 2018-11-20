@@ -18,7 +18,7 @@ class Results extends Component {
         <React.Fragment>
             <Header as="h1" icon textAlign="center" />
             <Icon name={iconName} size="massive" inverted />
-            <Header.Content inverted style={H1Style}>
+            <Header.Content style={H1Style}>
                 {headerContent}
             </Header.Content>
         </React.Fragment>
