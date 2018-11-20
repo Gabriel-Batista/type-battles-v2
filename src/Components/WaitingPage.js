@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { ActionCable } from "react-actioncable-provider";
 import { GameAdapters } from "../Adapters/GameAdapters";
-import { UserAdapters } from "../Adapters/UserAdapters"
+import { UserAdapters } from "../Adapters/UserAdapters";
 import GameActions from "../Actions/GameActions";
 
 import PlayArea from "./PlayArea";
@@ -22,24 +22,14 @@ class WaitingPage extends Component {
 
     componentDidMount = () => {
         GameAdapters.join().then(res => {
-            if (res.error && this.props.matchId === null) {
-                this.setState({ redirect: true });
-            } else if (res.error && this.props.matchId !== null) {
-                GameAdapters.getMatch(this.props.matchId).then(res => {
-                    this.setState({
-                        seatsTaken: res.seats_taken,
-                        createWebSocket: true
-                    });
-                });
-            } else {
-                console.log("fetch:", res);
-                this.props.updateMatchId(res.id);
-                this.props.updateParagraph(res.paragraph);
-                this.setState({
-                    seatsTaken: res.seats_taken,
-                    createWebSocket: true
-                });
-            }
+            console.log("fetch:", res);
+            this.props.updateMatchId(res.id);
+            this.props.updateParagraph(res.paragraph);
+            this.props.updateAuthor(res.author);
+            this.setState({
+                seatsTaken: res.seats_taken,
+                createWebSocket: true
+            });
         });
     };
 
@@ -55,7 +45,7 @@ class WaitingPage extends Component {
         console.log("ActionCable:", res);
         if (res.complete) {
             this.props.setComplete();
-            UserAdapters.leaveMatch(this.props.userId)
+            UserAdapters.leaveMatch(this.props.userId);
         }
         this.setState({
             seatsTaken: res.seats_taken
@@ -81,7 +71,7 @@ class WaitingPage extends Component {
         for (let i = 0; i < seatsTaken; i++) {
             result.push(
                 <Icon
-                    key={i}
+                    key={`check${i}`}
                     name="check"
                     size="big"
                     color="blue"
@@ -93,7 +83,7 @@ class WaitingPage extends Component {
         for (let i = 0; i < 4 - seatsTaken; i++) {
             result.push(
                 <Icon
-                    key={i}
+                    key={`search${i}`}
                     name="search"
                     size="big"
                     color="red"
