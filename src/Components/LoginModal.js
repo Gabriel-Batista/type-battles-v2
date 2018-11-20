@@ -42,6 +42,7 @@ class LoginModal extends Component {
                     if (res.current_match !== null) {
                         this.props.updateMatchId(res.current_match.id);
                         this.props.updateParagraph(res.current_match.paragraph);
+                        this.props.updateAuthor(res.current_match.author)
                     }
                     this.handleClose();
                 });
@@ -89,7 +90,7 @@ class LoginModal extends Component {
                 onClose={this.handleClose}
                 size="small"
             >
-                <Header icon="lock">
+                <Header>
                     {this.state.signup ? "Signup" : "Login"}
                 </Header>
                 <Modal.Content>

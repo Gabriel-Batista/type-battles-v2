@@ -4,6 +4,7 @@ const defaultState = {
     matchId: null,
     input: "",
     paragraph: "The quick brown fox jumps over the lazy dog",
+    author: "",
     right: "",
     wrong: "",
     gameOver: false,
@@ -22,6 +23,8 @@ const GameReducer = (state = defaultState, action) => {
             return { ...state, matchId: action.matchId}
         case GameConst.UPDATE_PARAGRAPH:
             return { ...state, paragraph: action.paragraph}
+        case GameConst.UPDATE_AUTHOR:
+            return { ...state, author: action.author }
         case GameConst.GAME_OVER:
             return{ ...state, gameOver: true}
         case GameConst.COMPLETE:

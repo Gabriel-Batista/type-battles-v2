@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import GameActions from "../Actions/GameActions";
 
-import { Icon, Grid } from "semantic-ui-react";
+import { Icon } from "semantic-ui-react";
 import {
     ParagraphContainerStyle,
     RightStyle,
@@ -11,7 +11,8 @@ import {
     ParagraphStyle,
     InnerContainerStyle,
     LeftIconStyle,
-    RightIconStyle
+    RightIconStyle,
+    AuthorStyle
 } from "../Styles/ParagraphStyles";
 
 const Paragraph = props => {
@@ -27,6 +28,9 @@ const Paragraph = props => {
                     <span style={RightStyle}>{props.right}</span>
                     <span style={WrongStyle}>{props.wrong}</span>
                     <span style={ParagraphStyle}>{formatParagraph()}</span>
+                    <br />
+                    <br />
+                    <cite style={AuthorStyle}>-{props.author}</cite>
                 </span>
                 <Icon name="quote right" size="large" style={RightIconStyle} />
             </span>
@@ -37,6 +41,7 @@ const Paragraph = props => {
 const mapStateToProps = state => {
     return {
         paragraph: state.game.paragraph,
+        author: state.game.author,
         right: state.game.right,
         wrong: state.game.wrong
     };

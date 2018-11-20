@@ -32,6 +32,12 @@ const GameActions = dispatch => {
               paragraph: paragraph
             })
         },
+        updateAuthor: author => {
+          dispatch({
+            type: GameConst.UPDATE_AUTHOR,
+            author: author
+          })
+        },
         setGameOver: () => {
             dispatch({
                 type: GameConst.GAME_OVER

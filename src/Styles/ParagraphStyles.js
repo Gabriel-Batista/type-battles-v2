@@ -7,7 +7,7 @@ export const ParagraphContainerStyle = {
     alignItems: "center",
     alignContent: "center",
     flexWrap: "nowrap",
-    margin: "2em 0"
+    margin: "3% 0"
 };
 
 export const RightStyle = { color: "green", whiteSpace: "normal" };
@@ -18,9 +18,11 @@ export const ParagraphStyle = { whiteSpace: "normal" }
 
 export const InnerContainerStyle = { margin: "4em", lineHeight: "1em" };
 
-export const LeftIconStyle = { marginLeft: "2em" }
+export const LeftIconStyle = { marginLeft: "2em", paddingBottom: "10%" }
 
-export const RightIconStyle = { marginRight: "2em" }
+export const RightIconStyle = { marginRight: "2em", paddingBottom:"10%" }
+
+export const AuthorStyle = {marginTop: "10%"}
 
 // export const ParagraphWrapperStyle = {
 //     display: "flex",
