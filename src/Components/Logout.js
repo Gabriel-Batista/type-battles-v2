@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux"
 import { Menu } from 'semantic-ui-react'
-import {UserAdapters} from '../Adapters/UserAdapters'
 
 const Logout = props => {
     const logout = () =>  {
