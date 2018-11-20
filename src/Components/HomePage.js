@@ -113,7 +113,7 @@ class HomePage extends Component {
             <Rail position="right" style={RailStyle}>
                 <Header as="h1">What People are Saying!</Header>
                 <Divider />
-                <p style={QuoteContainerStyle}>
+                <div style={QuoteContainerStyle}>
                     <Segment style={QuoteStyle}>
                         "The most fun I've had on the internet!" <br />
                         <span style={QuoteAuthorStyle}>-Albert Einstein</span>
@@ -126,7 +126,7 @@ class HomePage extends Component {
                         "This is amazing, and im not even made up!" <br />
                         <span style={QuoteAuthorStyle}>-Madeup person</span>
                     </Segment>
-                </p>
+                </div>
             </Rail>
         </div>
     );
