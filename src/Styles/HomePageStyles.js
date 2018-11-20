@@ -28,7 +28,7 @@ export const ScreenshotStyle = {
     margin: "0 auto"
 };
 
-export const RailStyle = { padding: "1%", margin: "2%" };
+export const RailStyle = { padding: "1%", margin: "2%", lineHeight: "1.5em" };
 export const QuoteStyle = { fontSize: "14pt", fontStyle: "italic" }
-export const QuoteContainerStyle = { fontSize: "16pt" };
+export const QuoteContainerStyle = { fontSize: "16pt", lineHeight:"1.5em" };
 export const QuoteAuthorStyle = { fontWeight: "bold" };
