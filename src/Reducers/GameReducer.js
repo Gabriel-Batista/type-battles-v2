@@ -7,6 +7,7 @@ const defaultState = {
     author: "",
     right: "",
     wrong: "",
+    wpm: 0,
     gameOver: false,
     complete: false
 }
@@ -25,6 +26,8 @@ const GameReducer = (state = defaultState, action) => {
             return { ...state, paragraph: action.paragraph}
         case GameConst.UPDATE_AUTHOR:
             return { ...state, author: action.author }
+        case GameConst.UPDATE_WPM:
+            return { ...state, wpm: action.wpm }
         case GameConst.GAME_OVER:
             return{ ...state, gameOver: true}
         case GameConst.COMPLETE:

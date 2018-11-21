@@ -38,6 +38,12 @@ const GameActions = dispatch => {
             author: author
           })
         },
+        updateWpm: wpm => {
+          dispatch({
+            type: GameConst.UPDATE_WPM,
+            wpm: wpm
+          })
+        },
         setGameOver: () => {
             dispatch({
                 type: GameConst.GAME_OVER
