@@ -19,6 +19,7 @@ class Results extends Component {
             <Header as="h1" icon textAlign="center" />
             <Icon name={iconName} size="massive" inverted />
             <Header.Content style={H1Style}>{headerContent}</Header.Content>
+            <Header.Subheader style={{marginTop: "2.5em", color: "#FFFFFF", fontSize: "16pt"}}>You typed at {this.props.wpm} wpm!</Header.Subheader>
         </React.Fragment>
     );
 
@@ -48,7 +49,8 @@ const mapStateToProps = state => {
     return {
         complete: state.game.complete,
         gameOver: state.game.gameOver,
-        userId: state.user.userId
+        userId: state.user.userId,
+        wpm: state.game.wpm
     };
 };
 

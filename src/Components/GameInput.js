@@ -7,6 +7,27 @@ import { GameAdapters } from "../Adapters/GameAdapters";
 import { InputStyle, InputWrapperStyle } from "../Styles/GameInputStyles";
 
 class GameInput extends Component {
+    constructor(props) {
+        super(props);
+        this.timeTaken = 0;
+    }
+
+    componentDidMount = () => {
+        this.intervalHandle = setInterval(() => {
+            this.timeTaken++;
+            console.log(this.timeTaken);
+        }, 1000);
+    };
+
+    wpm = () => {
+        let words = this.props.right.split(" ").length;
+        return words / this.timeTaken;
+    };
+
+    componentWillUnmount = () => {
+        clearInterval(this.intervalHandle);
+        this.props.updateWpm(Math.round((this.wpm() * 60)));
+    };
     componentDidUpdate = () => {
         this.gameOver();
     };
@@ -37,13 +58,13 @@ class GameInput extends Component {
 
     render() {
         return (
-          <div style={InputWrapperStyle}>
-            <input
-              autoFocus
-              value={this.props.input}
-              onChange={e => this.handleInput(e.target.value)}
-              style={InputStyle}
-            />
+            <div style={InputWrapperStyle}>
+                <input
+                    autoFocus
+                    value={this.props.input}
+                    onChange={e => this.handleInput(e.target.value)}
+                    style={InputStyle}
+                />
             </div>
         );
     }
@@ -53,7 +74,8 @@ const mapStateToProps = state => {
     return {
         input: state.game.input,
         paragraph: state.game.paragraph,
-        matchId: state.game.matchId
+        matchId: state.game.matchId,
+        right: state.game.right
     };
 };
 
