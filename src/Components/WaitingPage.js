@@ -125,16 +125,10 @@ class WaitingPage extends Component {
 
     render() {
         return (
-            <div>
-                {this.state.redirect ? (
-                    <Redirect to="/" />
-                ) : (
-                    <React.Fragment>
-                        {this.renderActionCable()}
-                        {this.renderWaitingPage()}
-                    </React.Fragment>
-                )}
-            </div>
+            <React.Fragment>
+                {this.renderActionCable()}
+                {this.renderWaitingPage()}
+            </React.Fragment>
         );
     }
 }
