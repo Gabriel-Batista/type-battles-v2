@@ -41,11 +41,11 @@ class HomePage extends Component {
     renderPlayButton = () => (
         <React.Fragment>
             {this.props.loggedIn ? (
-                <NavLink to="/play">
                     <Button
                         size="massive"
                         style={PlayButtonStyle}
                         animated="vertical"
+                        onClick={() => this.props.history.push('/play')}
                     >
                         {this.props.matchId ? (
                             <Button.Content visible>
@@ -58,7 +58,6 @@ class HomePage extends Component {
                             <Icon name="car" />
                         </Button.Content>
                     </Button>
-                </NavLink>
             ) : (
                 <LoginModal />
             )}
