@@ -1,4 +1,4 @@
-# Type-Battles-v2
+# Type-Battles-V2
 
 A fresh take on improving your typing speed, compete against friends and see who can reach the highest score.
 
