@@ -45,3 +45,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * (Inspiration) https://play.typeracer.com/
+
+
+**Currently looking for my first break in software engineering, if interrested contact me at [gabedbatista@gmail.com](gabedbatista@gmail.com) or check out my LinkedIn at [https://www.linkedin.com/in/gabriel-batista-dev/](https://www.linkedin.com/in/gabriel-batista-dev/)**
