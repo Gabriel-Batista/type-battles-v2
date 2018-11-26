@@ -16,15 +16,17 @@ import {
 import {
     HeaderRowStyle,
     PlayButtonStyle,
+    PracticeButtonStyle,
     H1Style,
     H2Style,
     ScreenshotStyle,
     RailStyle,
     QuoteStyle,
     QuoteContainerStyle,
-    QuoteAuthorStyle,
+    QuoteAuthorStyle
 } from "../Styles/HomePageStyles";
 import LoginModal from "./LoginModal";
+import { GameAdapters } from "../Adapters/GameAdapters";
 
 class HomePage extends Component {
     renderHeader = () => (
@@ -38,14 +40,37 @@ class HomePage extends Component {
             />
         </React.Fragment>
     );
+
+    getMatch = () => {
+        GameAdapters.join().then(res => {
+            this.props.history.push({
+                pathname: "/play",
+                state: {
+                    fetchRes: res
+                }
+            });
+        });
+    };
+    //TODO: refactor getMatch and getPractice into one function
+    getPractice = () => {
+    GameAdapters.practice().then(res => {
+      this.props.history.push({
+        pathname: "/play",
+        state: {
+          fetchRes: res
+        }
+      })
+    })
+    }
+
     renderPlayButton = () => (
         <React.Fragment>
             {this.props.loggedIn ? (
+                <Button.Group size="massive">
                     <Button
-                        size="massive"
                         style={PlayButtonStyle}
                         animated="vertical"
-                        onClick={() => this.props.history.push('/play')}
+                        onClick={this.getMatch}
                     >
                         {this.props.matchId ? (
                             <Button.Content visible>
@@ -58,6 +83,18 @@ class HomePage extends Component {
                             <Icon name="car" />
                         </Button.Content>
                     </Button>
+                    <Button.Or text="OR" />
+                    <Button
+                        animated="vertical"
+                        style={PracticeButtonStyle}
+                        onClick={this.getPractice}
+                    >
+                        <Button.Content visible>Practice</Button.Content>
+                        <Button.Content hidden>
+                            <Icon name="target" />
+                        </Button.Content>
+                    </Button>
+                </Button.Group>
             ) : (
                 <LoginModal />
             )}
