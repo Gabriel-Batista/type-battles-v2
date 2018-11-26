@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 import { ActionCable } from "react-actioncable-provider";
 import { GameAdapters } from "../Adapters/GameAdapters";
 import { UserAdapters } from "../Adapters/UserAdapters";
@@ -14,27 +13,26 @@ import { H1Style, H2Style, HeaderRowStyle } from "../Styles/WaitingPageStyles";
 
 class WaitingPage extends Component {
     state = {
-        redirect: false,
         seatsTaken: 0,
         createWebSocket: false,
         matchReady: false
     };
 
     componentDidMount = () => {
-        GameAdapters.join().then(res => {
-            console.log("fetch:", res);
-            this.props.updateMatchId(res.id);
-            this.props.updateParagraph(res.paragraph);
-            this.props.updateAuthor(res.author);
-            this.setState({
-                seatsTaken: res.seats_taken,
-                createWebSocket: true
-            });
+        console.log("fetch:", this.props.location.state);
+        let res = this.props.location.state.fetchRes
+        this.props.updateMatchId(res.id);
+        this.props.updateParagraph(res.paragraph);
+        this.props.updateAuthor(res.author);
+        this.setState({
+            seatsTaken: res.seats_taken,
+            createWebSocket: true
         });
     };
 
     componentDidUpdate = () => {
-        if (this.state.matchReady !== true && this.state.seatsTaken === 4) {
+      let res = this.props.location.state.fetchRes;
+        if (this.state.matchReady !== true && this.state.seatsTaken === res.seats) {
             this.setState({
                 matchReady: true
             });
