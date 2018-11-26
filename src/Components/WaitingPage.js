@@ -19,7 +19,6 @@ class WaitingPage extends Component {
     };
 
     componentDidMount = () => {
-        console.log("fetch:", this.props.location.state);
         let res = this.props.location.state.fetchRes
         this.props.updateMatchId(res.id);
         this.props.updateParagraph(res.paragraph);
@@ -40,7 +39,6 @@ class WaitingPage extends Component {
     };
 
     handleReceived = ({ match: res }) => {
-        console.log("ActionCable:", res);
         if (res.complete) {
             this.props.setComplete();
             UserAdapters.leaveMatch(this.props.userId);

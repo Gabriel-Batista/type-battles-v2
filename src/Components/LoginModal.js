@@ -26,13 +26,11 @@ class LoginModal extends Component {
     handleClose = () => this.setState({ modalOpen: false, signup: false });
 
     handleLogin = (email, password, name) => {
-        console.log(this.state.signup);
         let response = this.state.signup
             ? LoginAdapters.signup(email, password, name)
             : LoginAdapters.login(email, password);
         response.then(res => {
             if (res.token !== undefined) {
-                console.log(res);
                 localStorage.setItem("token", res.token);
                 this.props.updateEmail(email);
                 this.props.updateName(res.name);

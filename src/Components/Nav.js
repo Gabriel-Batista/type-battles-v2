@@ -16,7 +16,6 @@ class Nav extends Component {
             this.props.toggleLoggedIn();
             UserAdapters.getUserInfo()
             .then(res => {
-              console.log(res)
               this.props.updateUserId(res.id);
               this.props.updateEmail(res.email);
               this.props.updateName(res.name);

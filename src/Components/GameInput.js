@@ -15,7 +15,6 @@ class GameInput extends Component {
     componentDidMount = () => {
         this.intervalHandle = setInterval(() => {
             this.timeTaken++;
-            console.log(this.timeTaken);
         }, 1000);
     };
 
@@ -51,7 +50,6 @@ class GameInput extends Component {
     gameOver = () => {
         if (this.props.input === this.props.paragraph) {
             this.props.setGameOver();
-            console.log(this.props.matchId);
             GameAdapters.gameOver(this.props.matchId);
         }
     };
