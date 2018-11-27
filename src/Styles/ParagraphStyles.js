@@ -1,6 +1,6 @@
 export const ParagraphContainerStyle = {
     fontFamily: "'Spectral', serif",
-    fontSize: "4em",
+    fontSize: "2.5em",
     fontStyle: "italic",
     display: "flex",
     justifyContent: "center",
