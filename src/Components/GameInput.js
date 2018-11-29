@@ -9,25 +9,12 @@ import { InputStyle, InputWrapperStyle } from "../Styles/GameInputStyles";
 class GameInput extends Component {
     constructor(props) {
         super(props);
-        this.timeTaken = 0;
+        this.inputRef = React.createRef();
     }
-
-    componentDidMount = () => {
-        this.intervalHandle = setInterval(() => {
-            this.timeTaken++;
-        }, 1000);
-    };
-
-    wpm = () => {
-        let words = this.props.right.split(" ").length;
-        return words / this.timeTaken;
-    };
-
-    componentWillUnmount = () => {
-        clearInterval(this.intervalHandle);
-        this.props.updateWpm(Math.round((this.wpm() * 60)));
-    };
     componentDidUpdate = () => {
+        if(this.props.focus === true) {
+          this.focusInput()
+        }
         this.gameOver();
     };
 
@@ -54,11 +41,17 @@ class GameInput extends Component {
         }
     };
 
+    focusInput = () =>  {
+      console.log(this.inputRef.current)
+      this.inputRef.current.focus()
+    }
+
     render() {
         return (
             <div style={InputWrapperStyle}>
                 <input
-                    autoFocus
+                    ref={this.inputRef}
+                    disabled={this.props.disabled}
                     value={this.props.input}
                     onChange={e => this.handleInput(e.target.value)}
                     style={InputStyle}
