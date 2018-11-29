@@ -19,7 +19,15 @@ class Results extends Component {
             <Header as="h1" icon textAlign="center" />
             <Icon name={iconName} size="massive" inverted />
             <Header.Content style={H1Style}>{headerContent}</Header.Content>
-            <Header.Subheader style={{marginTop: "2.5em", color: "#FFFFFF", fontSize: "16pt"}}>You typed at {this.props.wpm} wpm!</Header.Subheader>
+            <Header.Subheader
+                style={{
+                    marginTop: "2.5em",
+                    color: "#FFFFFF",
+                    fontSize: "16pt"
+                }}
+            >
+                You typed at {this.props.wpm} wpm!
+            </Header.Subheader>
         </React.Fragment>
     );
 
