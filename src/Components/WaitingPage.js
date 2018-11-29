@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { ActionCable } from "react-actioncable-provider";
-import { GameAdapters } from "../Adapters/GameAdapters";
 import { UserAdapters } from "../Adapters/UserAdapters";
 import GameActions from "../Actions/GameActions";
 
@@ -92,7 +91,7 @@ class WaitingPage extends Component {
     };
 
     renderWaitingPage = () => (
-        <React.Fragment>
+      <React.Fragment>
             {this.state.matchReady ? (
                 <PlayArea />
             ) : (
