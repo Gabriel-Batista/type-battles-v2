@@ -30,7 +30,7 @@ class WaitingPage extends Component {
 
     componentDidUpdate = () => {
       let res = this.props.location.state.fetchRes;
-        if (this.state.matchReady !== true && this.state.seatsTaken === res.seats) {
+        if (this.state.matchReady !== true && this.state.seatsTaken === res.users.length) {
             this.setState({
                 matchReady: true
             });
