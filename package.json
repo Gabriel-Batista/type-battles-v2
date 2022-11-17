@@ -9,7 +9,7 @@
     "react-pose": "^4.0.1",
     "react-redux": "^5.1.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.0.5",
+    "react-scripts": "5.0.1",
     "redux": "^4.0.1",
     "semantic-ui-react": "^0.83.0",
     "styled-components": "^4.1.1"
